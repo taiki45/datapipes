@@ -1,4 +1,4 @@
-class Datapipes
+module Datapipes
   module Pipe
     class << self
       def recieve(data)

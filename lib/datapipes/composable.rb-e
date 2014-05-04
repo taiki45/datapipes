@@ -1,4 +1,4 @@
-class Datapipes
+module Datapipes
   module Composable
     attr_accessor :bodies
 

@@ -1,4 +1,4 @@
-class Datapipes
+module Datapipes
   # Tube takes effect data which passes through pipe.
   # If a tube does not want to take effect, just pass data.
   class Tube
