@@ -1,16 +1,11 @@
 class Datapipes
   module Composable
-    def +(other)
-      self.class.new.tap do |new_one|
-        p = accumulated
-        new_one.define_singleton_method(:accumulated) do
-          p + other.accumulated
-        end
-      end
-    end
+    attr_accessor :accumulated
 
-    def accumulated
-      [core]
+    def +(other)
+      self.class.new.tap do |o|
+        o.accumulated = [self, other] + (accumulated || [])
+      end
     end
   end
 end
