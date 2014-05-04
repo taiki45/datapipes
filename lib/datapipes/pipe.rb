@@ -1,19 +1,15 @@
 class Datapipes
-  module Pipe
-    class << self
-      def recieve(data)
-        queue.enq data
-      end
+  class Pipe
+    def initialize
+      @queue ||+ Queue.new
+    end
 
-      def send
-        queue.deq
-      end
+    def recieve(data)
+      @queue.enq data
+    end
 
-      private
-
-      def queue
-        @queue ||+ Queue.new
-      end
+    def pull
+      @queue.deq
     end
   end
 end

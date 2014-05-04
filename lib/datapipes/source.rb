@@ -9,17 +9,18 @@ class Datapipes
   #
   class Source
     include Composable
+    core {}
+
+    attr_accessor :pipe
 
     def run
       accumulated.map {|r| Thread.new { r.call } }
     end
 
-    core { }
-
     private
 
     def produce(data)
-      Datapipes::Pipe.recieve(data)
+      pipe.recieve(data)
     end
   end
 end
