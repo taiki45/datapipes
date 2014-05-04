@@ -3,16 +3,9 @@ class Datapipes
   # If a tube does not want to take effect, just pass data.
   class Tube
     include Composable
-    core {}
 
     def run(data)
-      accumulated.reduce(data) do |d, tube|
-        tube.accept?(d) ? tube.call(d) : d
-      end
-    end
-
-    def accept?(data)
-      false
+      accumulated.reduce(data) {|d, tube| tube.call(d) }
     end
   end
 end

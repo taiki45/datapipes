@@ -8,10 +8,9 @@ class Datapipes
   #   end
   #
   class Source
-    include Composable
-    core {}
-
     attr_accessor :pipe
+
+    include Composable
 
     def run
       accumulated.map {|r| Thread.new { r.call } }

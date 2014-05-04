@@ -4,6 +4,7 @@ require 'datapipes/composable'
 require 'datapipes/source'
 require 'datapipes/tube'
 require 'datapipes/sink'
+require 'datapipes/pipe'
 require 'datapipes/version'
 
 class Datapipes
@@ -23,14 +24,18 @@ class Datapipes
   def initialize
     Thread.abort_on_exception = true
     yield self
+    @flag = Queue.new
   end
 
   def run_resource
     source.pipe = pipe
     runners = source.run
 
-    run_comsumer
+    consumer = run_comsumer
     runners.each(&:join)
+
+    notify_resource_ending
+    consumer.join if consumer.status == "run"
   end
 
   private
@@ -38,11 +43,19 @@ class Datapipes
   def run_comsumer
     Thread.new do
       loop do
-        catch :next do
-          data = tube.run(pipe.pull)
-          sink.run(data)
-        end
+        break if resource_ended? && pipe.empty?
+
+        data = tube.run(pipe.pull)
+        sink.run(data)
       end
     end
+  end
+
+  def notify_resource_ending
+    @flag.enq true
+  end
+
+  def resource_ended?
+    !@flag.empty?
   end
 end
