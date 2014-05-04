@@ -6,16 +6,14 @@ describe Datapipes::Composable do
       Class.new do
         include Datapipes::Composable
 
-        def body
-          -> { one }
-        end
+        core { one }
 
         def one
           1
         end
 
         def exec
-          bodies.map(&:call)
+          accumulated.map(&:call)
         end
       end
     end
@@ -24,9 +22,7 @@ describe Datapipes::Composable do
       Class.new do
         include Datapipes::Composable
 
-        def body
-          -> { five }
-        end
+        core { five }
 
         def five
           5
@@ -37,8 +33,6 @@ describe Datapipes::Composable do
     let(:a) { class_a.new }
     let(:b) { class_b.new }
     subject { a + b }
-
-    its(:bodies) { should have(2).items }
 
     it 'remember defined body' do
       expect(subject.exec).to eq [1, 5]
