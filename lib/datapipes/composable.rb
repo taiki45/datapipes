@@ -4,7 +4,7 @@ module Datapipes
 
     def +(other)
       self.class.new.tap do |new_one|
-        source.bodies = [body, other.body]
+        new_one.bodies = [body, other.body]
       end
     end
   end
