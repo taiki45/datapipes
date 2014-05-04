@@ -7,6 +7,6 @@ branches:
   only:
     - master
 script:
-  - bundle exec rspec -c
+  - bundle exec rake spec
 notifications:
   email: false
