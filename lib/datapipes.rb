@@ -21,6 +21,7 @@ class Datapipes
   attr_accessor :source, :tube, :sink, :pipe
 
   def initialize
+    Thread.abort_on_exception = true
     yield self
   end
 
@@ -32,11 +33,15 @@ class Datapipes
     runners.each(&:join)
   end
 
+  private
+
   def run_comsumer
     Thread.new do
       loop do
-        data = tube.run(pipe.pull)
-        sink.run(data)
+        catch :next do
+          data = tube.run(pipe.pull)
+          sink.run(data)
+        end
       end
     end
   end
