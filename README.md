@@ -1,4 +1,4 @@
-datapipes
+datapipes [![Build Status](https://travis-ci.org/taiki45/datapipes.svg?branch=master)](https://travis-ci.org/taiki45/datapipes)
 =========
 datapipes is multi-streaming library.
 
