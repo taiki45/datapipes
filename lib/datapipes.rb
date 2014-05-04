@@ -7,5 +7,8 @@ require 'datapipes/sink'
 require 'datapipes/version'
 
 module Datapipes
-  # Your code goes here...
+  class << self
+    def make(source, tube, sink)
+    end
+  end
 end
