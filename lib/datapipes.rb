@@ -8,29 +8,19 @@ require 'datapipes/pipe'
 require 'datapipes/version'
 
 class Datapipes
-  class << self
-    def make(source, tube, sink, pipe)
-      new do |new_one|
-        new_one.source = source
-        new_one.tube = tube
-        new_one = sink
-        new_one.pipe
-      end
-    end
-  end
+  def initialize(source, tube, sink, pipe)
+    @source = source
+    @tube = tube
+    @sink = sink
+    @pipe = pipe
 
-  attr_accessor :source, :tube, :sink, :pipe
-
-  def initialize
     Thread.abort_on_exception = true
     @flag = Queue.new
-
-    yield self
   end
 
   def run_resource
-    source.pipe = pipe
-    runners = source.run_all
+    @source.pipe = @pipe
+    runners = @source.run_all
 
     consumer = run_comsumer
     runners.each(&:join)
@@ -44,10 +34,10 @@ class Datapipes
   def run_comsumer
     Thread.new do
       loop do
-        break if resource_ended? && pipe.empty?
+        break if resource_ended? && @pipe.empty?
 
-        data = tube.run_all(pipe.pull)
-        sink.run_all(data)
+        data = @tube.run_all(@pipe.pull)
+        @sink.run_all(data)
       end
     end
   end

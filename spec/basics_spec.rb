@@ -6,12 +6,12 @@ describe Datapipes::Basics do
   after { $stdout = STDOUT }
 
   let(:datapipe) do
-    Datapipes.new do |datapipe|
-      datapipe.source = Datapipes::Basics::List.new
-      datapipe.tube = Datapipes::Basics::Triple.new
-      datapipe.sink = Datapipes::Basics::Print.new
-      datapipe.pipe = Datapipes::Pipe.new
-    end
+    Datapipes.new(
+      Datapipes::Basics::List.new,
+      Datapipes::Basics::Triple.new,
+      Datapipes::Basics::Print.new,
+      Datapipes::Pipe.new
+    )
   end
 
   let(:out) do
