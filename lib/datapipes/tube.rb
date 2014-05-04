@@ -16,7 +16,7 @@ class Datapipes
     end
 
     def accept?(data)
-      false
+      true
     end
   end
 end
