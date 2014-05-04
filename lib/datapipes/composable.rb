@@ -1,6 +1,5 @@
 class Datapipes
   module Composable
-    extend ActiveSupport::Concern
     def +(other)
       self.class.new.tap do |new_one|
         p = accumulated
@@ -10,12 +9,8 @@ class Datapipes
       end
     end
 
-    module ClassMethods
-      def core(&body)
-        define_method(:accumulated) do
-          [-> { instance_eval(&body) }]
-        end
-      end
+    def accumulated
+      [core]
     end
   end
 end

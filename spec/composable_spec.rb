@@ -6,7 +6,9 @@ describe Datapipes::Composable do
       Class.new do
         include Datapipes::Composable
 
-        core { one }
+        def core
+          -> { one }
+        end
 
         def one
           1
@@ -22,7 +24,9 @@ describe Datapipes::Composable do
       Class.new do
         include Datapipes::Composable
 
-        core { five }
+        def core
+         -> { five }
+        end
 
         def five
           5
