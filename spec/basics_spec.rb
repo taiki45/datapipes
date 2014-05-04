@@ -15,7 +15,7 @@ describe Datapipes::Basics do
   end
 
   let(:out) do
-    (1..10).map {|i| [i, i, i] }.join("\n") + "\n"
+    (4..6).map {|i| [i, i, i] }.join("\n") + "\n"
   end
 
   it 'runs without errors' do

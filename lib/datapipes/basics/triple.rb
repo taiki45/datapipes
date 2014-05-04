@@ -5,8 +5,8 @@ class Datapipes
         [data, data, data]
       end
 
-      def accept?(_)
-        true
+      def accept?(data)
+        data.is_a? Integer and data > 3
       end
     end
   end
