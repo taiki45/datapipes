@@ -1,19 +1,20 @@
 class Datapipes
   #
-  # Build your own source logic in core block.
-  # Use produce to emitt data to pipe.
+  # Build your own source logic in `run` method.
+  # Use `produce` method to emitt data to pipe.
   #
-  #   core do
+  #   def run
   #     10.times {|i| produce(i) }
   #   end
   #
   class Source
-    attr_accessor :pipe
-
     include Composable
 
-    def run
-      accumulated.map {|r| Thread.new { r.call } }
+    attr_accessor :pipe
+
+    def run_all
+      accumulated ||= [self]
+      accumulated.map {|s| Thread.new { s.run } }
     end
 
     private

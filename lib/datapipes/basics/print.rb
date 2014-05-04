@@ -1,8 +1,8 @@
 class Datapipes
   module Basics
     class Print < Sink
-      def core
-        -> data { puts data }
+      def run(data)
+        puts data
       end
 
       def accept?(_)

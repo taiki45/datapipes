@@ -23,13 +23,14 @@ class Datapipes
 
   def initialize
     Thread.abort_on_exception = true
-    yield self
     @flag = Queue.new
+
+    yield self
   end
 
   def run_resource
     source.pipe = pipe
-    runners = source.run
+    runners = source.run_all
 
     consumer = run_comsumer
     runners.each(&:join)
@@ -45,8 +46,8 @@ class Datapipes
       loop do
         break if resource_ended? && pipe.empty?
 
-        data = tube.run(pipe.pull)
-        sink.run(data)
+        data = tube.run_all(pipe.pull)
+        sink.run_all(data)
       end
     end
   end

@@ -1,8 +1,12 @@
 class Datapipes
   module Basics
     class Triple < Tube
-      def core
-        -> data { [data, data, data] }
+      def run(data)
+        [data, data, data]
+      end
+
+      def accept?(_)
+        true
       end
     end
   end

@@ -1,11 +1,22 @@
 class Datapipes
   # Tube takes effect data which passes through pipe.
-  # If a tube does not want to take effect, just pass data.
+  #
+  # Build your own tube logic in `run` method.
   class Tube
-    include Composable
+    def run_all(data)
+      accumulated ||= [self]
 
-    def run(data)
-      accumulated.reduce(data) {|d, tube| tube.call(d) }
+      accumulated.reduce(data) do |d, tube|
+        if tube.accept? d
+          tube.run(d)
+        else
+          d
+        end
+      end
+    end
+
+    def accept?(data)
+      false
     end
   end
 end
