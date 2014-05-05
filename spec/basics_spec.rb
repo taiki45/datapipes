@@ -1,15 +1,19 @@
 require 'spec_helper'
-require 'datapipes/basics'
 
-describe Datapipes::Basics do
+$: << File.expand_path('../../examples', __FILE__)
+require 'list'
+require 'triple'
+require 'print'
+
+describe 'basic function' do
   before { $stdout = StringIO.new }
   after { $stdout = STDOUT }
 
   let(:datapipe) do
     Datapipes.new(
-      Datapipes::Basics::List.new,
-      Datapipes::Basics::Print.new,
-      tube: Datapipes::Basics::Triple.new
+      List.new,
+      Print.new,
+      tube: Triple.new
     )
   end
 
