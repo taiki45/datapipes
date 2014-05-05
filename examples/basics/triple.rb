@@ -1,3 +1,6 @@
+# Next is tube. Tube processes piped data. A example tube recieve
+# Integer value then increase amount of the value.
+#
 class Triple < Datapipes::Tube
   def run(data)
     if accept? data

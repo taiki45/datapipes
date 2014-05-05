@@ -1,3 +1,5 @@
+# Sink consumes piped data. A typical sink is printing data.
+#
 class Print < Datapipes::Sink
   def run(data)
     puts data if accept? data
