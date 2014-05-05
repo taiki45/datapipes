@@ -32,5 +32,4 @@ describe Datapipes::Tube do
       expect(subject.run(4)).to eq 22
     end
   end
-
 end
