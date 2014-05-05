@@ -21,7 +21,7 @@ a few objects sparated by its responsibility.
 Consumer
 ```
 
-To handle multi streamings, datapipes offers composable. Source, Tube and Sink
+To handle multi streamings, datapipes offers composabiliy. Source, Tube and Sink
 are composable individually. So the diagram above will be:
 
 ```
