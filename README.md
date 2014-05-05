@@ -25,24 +25,22 @@ To handle multi streamings, datapipes offers composabiliy. Source, Tube and Sink
 are composable individually. So the diagram above will be:
 
 ```
- Composed Source works asynchronously
+ Composed Source works concurrently.
 
   [Source Source Source]
             |
-            |  pipe handles asynchronous
+            |  pipe handles asynchronous.
             |
            Tube
-           Tube  Composed Tube has individual tube in series
+           Tube  Composed Tube has individual tube in series.
            Tube
            Tube
             |
             |
             |
-           Sink
-           Sink
-           Sink
+     [Sink Sink Sink]
 
- Composed Sink works synchronously
+ Composed Sink works concurrently.
 ```
 
 ## Installation
