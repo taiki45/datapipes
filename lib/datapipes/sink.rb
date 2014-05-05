@@ -6,7 +6,10 @@ class Datapipes
     # TODO: parallel
     def run_all(data)
       @accumulated ||= [self]
-      @accumulated.each {|sink| sink.run(data) }
+      count = Parallel.processor_count
+      Parallel.each(@accumulated, in_threads: count) do |sink|
+        sink.run(data)
+      end
     end
   end
 end
