@@ -31,5 +31,14 @@ describe Datapipes::Tube do
     it 'composes' do
       expect(subject.run(4)).to eq 22
     end
+
+    describe 'associative law' do
+      let(:a) { (tube_a >> tube_b) >> tube_c }
+      let(:b) { tube_a >> (tube_b >> tube_c) }
+
+      it 'keeps' do
+        expect(a.run(5)).to eq b.run(5)
+      end
+    end
   end
 end
