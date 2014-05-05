@@ -1,5 +1,6 @@
 ## 0.1.1
-- Drop Ruby 1.9 supports
+- Drop Ruby 1.9 supports.
+- Tube and Pipe are optional in making datapipe.
 
 ## 0.1.0
 - Change Tube cmposing way. https://github.com/taiki45/datapipes/pull/4
