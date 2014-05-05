@@ -1,8 +1,8 @@
-datapipes [![Build Status](https://travis-ci.org/taiki45/datapipes.svg?branch=master)](https://travis-ci.org/taiki45/datapipes) [![Gem Version](https://badge.fury.io/rb/datapipes.svg)](http://badge.fury.io/rb/datapipes)
+datapipes [![Gem Version](https://badge.fury.io/rb/datapipes.svg)](http://badge.fury.io/rb/datapipes)
 =========
 datapipes is an asynchronous multi streaming library.
 
-[![Coverage Status](https://coveralls.io/repos/taiki45/datapipes/badge.png)](https://coveralls.io/r/taiki45/datapipes) [![Code Climate](https://codeclimate.com/github/taiki45/datapipes.png)](https://codeclimate.com/github/taiki45/datapipes) [![Dependency Status](https://gemnasium.com/taiki45/datapipes.svg)](https://gemnasium.com/taiki45/datapipes)
+[[![Build Status](https://travis-ci.org/taiki45/datapipes.svg?branch=master)](https://travis-ci.org/taiki45/datapipes) ![Coverage Status](https://coveralls.io/repos/taiki45/datapipes/badge.png)](https://coveralls.io/r/taiki45/datapipes) [![Code Climate](https://codeclimate.com/github/taiki45/datapipes.png)](https://codeclimate.com/github/taiki45/datapipes) [![Dependency Status](https://gemnasium.com/taiki45/datapipes.svg)](https://gemnasium.com/taiki45/datapipes)
 
 ## About
 datapipes encourages to handle multi streamings asynchronously. datapipes has
