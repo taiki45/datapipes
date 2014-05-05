@@ -3,7 +3,7 @@ class Datapipes
   class Sink
     include Composable
 
-    # TODO: parallel
+    # Run all sinks concurrently.
     def run_all(data)
       @accumulated ||= [self]
       count = Parallel.processor_count
