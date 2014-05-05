@@ -4,8 +4,8 @@ class Datapipes
     include Composable
 
     def run_all(data)
-      accumulated ||= [self]
-      accumulated.each {|sink| sink.run(data) if sink.accept? data }
+      @accumulated ||= [self]
+      @accumulated.each {|sink| sink.run(data) if sink.accept? data }
     end
 
     def accept?(data)

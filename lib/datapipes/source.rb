@@ -13,8 +13,8 @@ class Datapipes
     attr_accessor :pipe
 
     def run_all
-      accumulated ||= [self]
-      accumulated.map {|s| Thread.new { s.run } }
+      @accumulated ||= [self]
+      @accumulated.map {|s| Thread.new { s.run } }
     end
 
     private

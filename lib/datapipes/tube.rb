@@ -3,10 +3,12 @@ class Datapipes
   #
   # Build your own tube logic in `run` method.
   class Tube
-    def run_all(data)
-      accumulated ||= [self]
+    include Composable
 
-      accumulated.reduce(data) do |d, tube|
+    def run_all(data)
+      @accumulated ||= [self]
+
+      @accumulated.reduce(data) do |d, tube|
         if tube.accept? d
           tube.run(d)
         else

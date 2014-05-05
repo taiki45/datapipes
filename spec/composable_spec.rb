@@ -42,4 +42,28 @@ describe Datapipes::Composable do
       expect(subject.exec).to eq [1, 5]
     end
   end
+
+  context 'with tube' do
+    let(:tube_a) do
+      Class.new(Datapipes::Tube) do
+        def run(data)
+          data + 2
+        end
+      end.new
+    end
+
+    let(:tube_b) do
+      Class.new(Datapipes::Tube) do
+        def run(data)
+          data * 3
+        end
+      end.new
+    end
+
+    subject { tube_a + tube_b }
+
+    it 'generates new tube' do
+      expect(subject.run_all(4)).to eq 18
+    end
+  end
 end
