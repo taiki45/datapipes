@@ -62,21 +62,83 @@ Or install it yourself as:
 ## Usage
 You have to define your own Source, Tube and Sink.
 
-### Source
 A basic source is list type. it produces a value in several times.
 Use `produce` method to emit data to pipe.
 
 ```ruby
-class Datapipes
-  module Basics
-    class List < Source
-      def run
-        (1..10).each {|i| produce(i) }
-      end
-    end
+class List < Datapipes::Source
+  def run
+    (1..10).each {|i| produce(i) }
   end
 end
 ```
+
+Next is tube. Tube processes piped data. A example tube recieve
+Integer value then increase amount of the value.
+
+Define `accept?` to recieve the data or skip this.
+
+```ruby
+class Triple < Datapipes::Tube
+  def run(data)
+    [data, data, data]
+  end
+
+  def accept?(data)
+    data.is_a? Integer and data > 3
+  end
+end
+```
+
+Sink consumes piped data. A typical sink is printing data.
+
+```ruby
+class Print < Datapipes::Sink
+  def run(data)
+    puts data
+  end
+
+  def accept?(data)
+    data.is_a? Array and data[0] < 7
+  end
+end
+```
+
+You can make your own datapipe with your objects.
+
+```ruby
+datapipe = Datapipes.new(
+  List.new,           # A source
+  Triple.new,         # A tube
+  Print.new,          # A sink
+  Datapipes::Pipe.new # A pipe
+)
+```
+
+Then just run everything with `run_resource`.
+
+```ruby
+datapipe.run_resource
+```
+
+The output will be:
+
+```
+4
+4
+4
+5
+5
+5
+6
+6
+6
+```
+
+Congratulation!!
+
+### Composing objects
+TODO...
 
 ## Contributing
 
