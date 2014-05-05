@@ -1,4 +1,4 @@
-datapipes [![Build Status](https://travis-ci.org/taiki45/datapipes.svg?branch=master)](https://travis-ci.org/taiki45/datapipes)
+datapipes [![Build Status](https://travis-ci.org/taiki45/datapipes.svg?branch=master)](https://travis-ci.org/taiki45/datapipes) [![Gem Version](https://badge.fury.io/rb/datapipes.svg)](http://badge.fury.io/rb/datapipes)
 =========
 datapipes is an asynchronous multi streaming library.
 
