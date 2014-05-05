@@ -7,19 +7,13 @@ class Datapipes
       op1 = self
       Tube.new.tap do |o|
         o.define_singleton_method(:run) do |data|
-          data = op1.run(data) if op1.accept? data
-          data = op2.run(data) if op2.accept? data
-          data
+          op2.run(op1.run(data))
         end
       end
     end
 
     def run(data)
       data
-    end
-
-    def accept?(data)
-      true
     end
   end
 end
