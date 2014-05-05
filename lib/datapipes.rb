@@ -1,5 +1,3 @@
-require 'active_support/all'
-
 require 'datapipes/composable'
 require 'datapipes/source'
 require 'datapipes/tube'
