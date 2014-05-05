@@ -2,6 +2,25 @@ datapipes [![Build Status](https://travis-ci.org/taiki45/datapipes.svg?branch=ma
 =========
 datapipes is an asynchronous multi streaming library.
 
+## About
+datapipes encourages to handle multi streamings asynchronously. datapipes has
+a few objects sparated by its responsibility.
+
+- __Source__ Produces resources and emits the resource to pipe.
+- __Tube__ Effector for resources. Processes resource in the middle of pipe.
+- __Sink__ Consumer for resources. Do something with processed resources.
+- __Pipe__ Resources pass through the pipe. Handles resources asynchronously.
+
+```
+ Source
+   |   ↓ data flow
+   |
+  Tube
+   |    pipe is '|'
+   |
+Consumer
+```
+
 ## Installation
 
 Add this line to your application's Gemfile:
