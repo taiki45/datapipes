@@ -37,7 +37,6 @@ class Datapipes
         data = @tube.run_all(@pipe.pull)
         @sink.run_all(data)
       end
-
       Thread.current.kill
     end
   end
@@ -52,7 +51,8 @@ class Datapipes
   end
 
   def graceful_down(consumer)
+    sleep 0.1
     consumer.kill if consumer.status == 'sleep'
-    consumer.join if consumer.status == 'run'
+    consumer.join
   end
 end
