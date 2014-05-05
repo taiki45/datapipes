@@ -1,3 +1,4 @@
+require 'parallel'
 require 'datapipes/composable'
 require 'datapipes/source'
 require 'datapipes/tube'
