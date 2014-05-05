@@ -1,6 +1,6 @@
 require 'datapipes'
 
-$: << File.expand_path('..', __FILE__)
+$: << File.expand_path('../basics', __FILE__)
 require 'list'
 require 'triple'
 require 'print'
