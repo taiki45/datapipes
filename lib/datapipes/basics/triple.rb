@@ -2,7 +2,11 @@ class Datapipes
   module Basics
     class Triple < Tube
       def run(data)
-        [data, data, data]
+        if accept? data
+          [data, data, data]
+        else
+          data
+        end
       end
 
       def accept?(data)

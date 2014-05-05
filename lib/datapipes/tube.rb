@@ -3,22 +3,17 @@ class Datapipes
   #
   # Build your own tube logic in `run` method.
   class Tube
-    include Composable
-
-    def run_all(data)
-      @accumulated ||= [self]
-
-      @accumulated.reduce(data) do |d, tube|
-        if tube.accept? d
-          tube.run(d)
-        else
-          d
+    def >>(op2)
+      op1 = self
+      Tube.new.tap do |o|
+        o.define_singleton_method(:run) do |data|
+          op2.run(op1.run(data))
         end
       end
     end
 
-    def accept?(data)
-      true
+    def run(data)
+      data
     end
   end
 end

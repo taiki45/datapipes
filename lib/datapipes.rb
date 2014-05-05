@@ -6,6 +6,7 @@ require 'datapipes/pipe'
 require 'datapipes/version'
 
 class Datapipes
+  # TODO: optional tube and pipe
   def initialize(source, tube, sink, pipe)
     @source = source
     @tube = tube
@@ -34,7 +35,7 @@ class Datapipes
       loop do
         break if resource_ended? && @pipe.empty?
 
-        data = @tube.run_all(@pipe.pull)
+        data = @tube.run(@pipe.pull)
         @sink.run_all(data)
       end
       Thread.current.kill

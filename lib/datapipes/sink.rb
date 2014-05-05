@@ -3,13 +3,10 @@ class Datapipes
   class Sink
     include Composable
 
+    # TODO: parallel
     def run_all(data)
       @accumulated ||= [self]
-      @accumulated.each {|sink| sink.run(data) if sink.accept? data }
-    end
-
-    def accept?(data)
-      true
+      @accumulated.each {|sink| sink.run(data) }
     end
   end
 end
