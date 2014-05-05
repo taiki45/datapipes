@@ -22,11 +22,20 @@ describe Datapipes::Sink do
       end.new
     end
 
-    subject { sink_a + sink_b }
+    let(:sink_c) do
+      list_ = list
+      Class.new(Datapipes::Sink) do
+        define_method(:run) do |data|
+          list_ << (data + 1)
+        end
+      end.new
+    end
+
+    subject { sink_a + sink_b + sink_c }
 
     it 'composes' do
       subject.run_all(5)
-      expect(list).to have(2).items
+      expect(list).to eq [8, 20, 6]
     end
   end
 end
