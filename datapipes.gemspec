@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Datapipes::VERSION
   spec.authors       = ['Taiki ONO']
   spec.email         = ['taiks.4559@gmail.com']
-  spec.summary       = %q{A library for processing steamings.}
-  spec.description   = %q{A library for processing steamings.}
+  spec.summary       = %q{An asynchronous multi steamings library.}
+  spec.description   = %q{To handle multi steamings easily.}
   spec.homepage      = 'https://github.com/taiki45/datapipes'
   spec.license       = 'MIT'
 
