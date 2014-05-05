@@ -13,8 +13,6 @@ class Datapipes
     @tube = tube
     @sink = sink
     @pipe = pipe
-
-    @flag = Queue.new
   end
 
   def run_resource
@@ -25,7 +23,7 @@ class Datapipes
     runners.each(&:join)
 
     notify_resource_ending
-    graceful_down(consumer)
+    consumer.join
   end
 
   private
@@ -33,27 +31,21 @@ class Datapipes
   def run_comsumer
     Thread.new do
       loop do
-        break if resource_ended? && @pipe.empty?
+        data = @pipe.pull
+        break if resource_ended?(data)
 
-        data = @tube.run(@pipe.pull)
-        @sink.run_all(data)
+        @sink.run_all(@tube.run(data))
       end
-      Thread.current.kill
     end
   end
 
   def notify_resource_ending
-    @flag.enq true
-    Thread.pass
+    @pipe.recieve Notification.new
   end
 
-  def resource_ended?
-    !@flag.empty?
+  def resource_ended?(data)
+    data.is_a? Notification
   end
 
-  def graceful_down(consumer)
-    sleep 0.1
-    consumer.kill if consumer.status == 'sleep'
-    consumer.join
-  end
+  Notification = Class.new
 end
