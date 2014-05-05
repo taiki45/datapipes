@@ -81,7 +81,11 @@ Define `accept?` to recieve the data or skip this.
 ```ruby
 class Triple < Datapipes::Tube
   def run(data)
-    [data, data, data]
+    if accept? data
+      [data, data, data]
+    else
+      data
+    end
   end
 
   def accept?(data)
@@ -95,7 +99,7 @@ Sink consumes piped data. A typical sink is printing data.
 ```ruby
 class Print < Datapipes::Sink
   def run(data)
-    puts data
+    puts data if accept? data
   end
 
   def accept?(data)
@@ -108,10 +112,9 @@ You can make your own datapipe with your objects.
 
 ```ruby
 datapipe = Datapipes.new(
-  List.new,           # A source
-  Triple.new,         # A tube
-  Print.new,          # A sink
-  Datapipes::Pipe.new # A pipe
+  List.new,        # A source
+  Print.new,       # A sink
+  tube: Triple.new,
 )
 ```
 
