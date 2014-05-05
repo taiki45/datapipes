@@ -5,6 +5,8 @@ require 'datapipes/sink'
 require 'datapipes/pipe'
 require 'datapipes/version'
 
+Thread.abort_on_exception = true
+
 class Datapipes
   def initialize(source, sink, tube: Tube.new, pipe: Pipe.new)
     @source = source
@@ -12,7 +14,6 @@ class Datapipes
     @sink = sink
     @pipe = pipe
 
-    Thread.abort_on_exception = true
     @flag = Queue.new
   end
 
