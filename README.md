@@ -21,6 +21,30 @@ a few objects sparated by its responsibility.
 Consumer
 ```
 
+To handle multi streamings, datapipes offers composable. Source, Tube and Sink
+are composable individually. So the diagram above will be:
+
+```
+ Composed Source works asynchronously
+
+  [Source Source Source]
+            |
+            |  pipe handles asynchronous
+            |
+           Tube
+           Tube  Composed Tube has individual tube in series
+           Tube
+           Tube
+            |
+            |
+            |
+           Sink
+           Sink
+           Sink
+
+ Composed Sink works synchronously
+```
+
 ## Installation
 
 Add this line to your application's Gemfile:
