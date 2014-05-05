@@ -1,3 +1,6 @@
+## 0.1.2
+- Sinks runs in parallel.
+
 ## 0.1.1
 - Drop Ruby 1.9 supports.
 - Tube and Pipe are optional in making datapipe.
