@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['taiks.4559@gmail.com']
   spec.summary       = %q{A library for processing steamings.}
   spec.description   = %q{A library for processing steamings.}
-  spec.homepage      = ''
+  spec.homepage      = 'https://github.com/taiki45/datapipes'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
