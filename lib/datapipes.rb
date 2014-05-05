@@ -34,7 +34,7 @@ class Datapipes
       loop do
         break if resource_ended? && @pipe.empty?
 
-        data = @tube.run_all(@pipe.pull)
+        data = @tube.run(@pipe.pull)
         @sink.run_all(data)
       end
       Thread.current.kill

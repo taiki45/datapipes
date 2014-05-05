@@ -2,7 +2,7 @@ class Datapipes
   module Basics
     class Print < Sink
       def run(data)
-        puts data
+        puts data if accept? data
       end
 
       def accept?(data)
