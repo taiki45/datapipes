@@ -24,7 +24,7 @@ class Datapipes
     runners.each(&:join)
 
     notify_resource_ending
-    consumer.join if consumer.status == "run"
+    graceful_down(consumer)
   end
 
   private
@@ -37,14 +37,22 @@ class Datapipes
         data = @tube.run_all(@pipe.pull)
         @sink.run_all(data)
       end
+
+      Thread.current.kill
     end
   end
 
   def notify_resource_ending
     @flag.enq true
+    Thread.pass
   end
 
   def resource_ended?
     !@flag.empty?
+  end
+
+  def graceful_down(consumer)
+    consumer.kill if consumer.status == 'sleep'
+    consumer.join if consumer.status == 'run'
   end
 end
