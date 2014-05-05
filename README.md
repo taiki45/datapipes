@@ -60,8 +60,23 @@ Or install it yourself as:
     $ gem install datapipes
 
 ## Usage
+You have to define your own Source, Tube and Sink.
 
-TODO: Write usage instructions here
+### Source
+A basic source is list type. it produces a value in several times.
+Use `produce` method to emit data to pipe.
+
+```ruby
+class Datapipes
+  module Basics
+    class List < Source
+      def run
+        (1..10).each {|i| produce(i) }
+      end
+    end
+  end
+end
+```
 
 ## Contributing
 
