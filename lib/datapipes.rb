@@ -6,7 +6,7 @@ require 'datapipes/pipe'
 require 'datapipes/version'
 
 class Datapipes
-  def initialize(source, sink, tube, pipe)
+  def initialize(source, sink, tube: Tube.new, pipe: Pipe.new)
     @source = source
     @tube = tube
     @sink = sink

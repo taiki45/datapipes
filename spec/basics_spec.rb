@@ -8,9 +8,8 @@ describe Datapipes::Basics do
   let(:datapipe) do
     Datapipes.new(
       Datapipes::Basics::List.new,
-      Datapipes::Basics::Triple.new,
       Datapipes::Basics::Print.new,
-      Datapipes::Pipe.new
+      tube: Datapipes::Basics::Triple.new
     )
   end
 
