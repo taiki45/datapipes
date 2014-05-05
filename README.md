@@ -18,7 +18,7 @@ a few objects sparated by its responsibility.
   Tube
    |    pipe is '|'
    |
-Consumer
+  Sink
 ```
 
 To handle multi streamings, datapipes offers composabiliy. Source, Tube and Sink
