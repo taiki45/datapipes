@@ -11,13 +11,5 @@ class Datapipes
     def pull
       @queue.deq
     end
-
-    def empty?
-      @queue.empty?
-    end
-
-    def size
-      @queue.size
-    end
   end
 end
