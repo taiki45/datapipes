@@ -46,6 +46,7 @@ are composable individually. So the diagram above will be:
 ```
 
 ## Installation
+__datapipes requires Ruby >= 2.0.__
 
 Add this line to your application's Gemfile:
 
