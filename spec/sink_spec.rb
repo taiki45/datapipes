@@ -7,7 +7,7 @@ describe Datapipes::Sink do
 
       it 'composes' do
         subject.run_all(5)
-        expect(list).to eq [8, 20, 6]
+        expect(list).to have(3).items
       end
     end
 
@@ -16,7 +16,7 @@ describe Datapipes::Sink do
 
       it 'composes' do
         subject.run_all(5)
-        expect(list).to eq [8, 20, 6, 50]
+        expect(list).to have(4).items
       end
     end
 
@@ -25,11 +25,18 @@ describe Datapipes::Sink do
       let(:b) { sink_a + (sink_b + sink_c) }
 
       it 'keeps' do
-        expect(a.run_all(3)).to eq b.run_all(3)
+        a.run_all(3)
+        size_a = list.size
+        list.clear
+
+        b.run_all(3)
+        size_b = list.size
+
+        expect(size_a).to eq size_b
       end
     end
 
-    let(:list) { [] }
+    let(:list) { Queue.new }
 
     let(:sink_a) do
       list_ = list
