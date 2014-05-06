@@ -45,6 +45,8 @@ are composable individually. So the diagram above will be:
  Composed Sink works concurrently.
 ```
 
+You can see how to compose objects in `examples/composing.rb`.
+
 ## Installation
 __datapipes requires Ruby >= 2.0.__
 
