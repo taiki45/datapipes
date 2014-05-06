@@ -23,7 +23,7 @@ a few objects sparated by its responsibility.
   Sink
 ```
 
-To handle multi streamings, datapipes offers composabiliy. Source, Tube and Sink
+To handle multi streamings, datapipes offers composability. Source, Tube and Sink
 are composable individually. So the diagram above will be:
 
 ```
