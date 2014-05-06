@@ -1,7 +1,10 @@
 class LongTask < Datapipes::Source
+  def initialize(range)
+    @range = range
+  end
+
   def run
-    (10..20).each do |n|
-      sleep 0.1
+    @range.each do |n|
       produce n
     end
   end
