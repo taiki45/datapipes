@@ -2,7 +2,7 @@ require 'datapipes'
 #
 # You have to define your own Source, Tube and Sink.
 #
-$: << File.expand_path('../basics', __FILE__)
+$: << File.expand_path('../lib', __FILE__)
 require 'list'
 require 'triple'
 require 'print'
