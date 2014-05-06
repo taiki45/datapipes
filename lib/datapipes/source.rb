@@ -10,13 +10,16 @@ class Datapipes
   class Source
     include Composable
 
-    attr_accessor :pipe
-
+    # Run accumulated sources which are set by composition.
+    # Each source works in new thread.
     def run_all
       @accumulated ||= [self]
       set_pipe
       @accumulated.map {|s| Thread.new { s.run } }
     end
+
+    # For internal uses. Do not touch.
+    attr_accessor :pipe
 
     private
 
