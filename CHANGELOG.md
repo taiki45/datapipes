@@ -1,3 +1,6 @@
+## 0.1.3
+- Fix bug with composing sources.
+
 ## 0.1.2
 - Sinks runs in parallel.
 
