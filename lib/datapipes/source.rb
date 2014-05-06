@@ -17,6 +17,12 @@ class Datapipes
   class Source
     include Composable
 
+    # Override in sub class.
+    def run
+    end
+
+    # For internal used.
+    #
     # Run accumulated sources which are set by composition.
     # Each source works in new thread.
     def run_all
