@@ -14,13 +14,18 @@ class Datapipes
 
     def run_all
       @accumulated ||= [self]
+      set_pipe
       @accumulated.map {|s| Thread.new { s.run } }
     end
 
     private
 
     def produce(data)
-      pipe.recieve(data)
+      @pipe.recieve(data)
+    end
+
+    def set_pipe
+      @accumulated.each {|s| s.pipe = @pipe }
     end
   end
 end
