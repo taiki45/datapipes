@@ -1,10 +1,17 @@
 class Datapipes
-  #
   # Build your own source logic in `run` method.
   # Use `produce` method to emitt data to pipe.
   #
   #   def run
   #     10.times {|i| produce(i) }
+  #   end
+  #
+  # You can use infinitie stream like:
+  #
+  #   def run
+  #     twitter_client.userstream do |event|
+  #       produce(event)
+  #     end
   #   end
   #
   class Source
