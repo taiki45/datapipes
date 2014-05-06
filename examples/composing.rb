@@ -9,7 +9,7 @@ require 'acc'
 
 acc = Acc.new
 
-source = List.new + LongTask.new(20..30)
+source = List.new + LongTask.new(21..30)
 tube = Mul.new >> Triple.new
 sink = acc
 
