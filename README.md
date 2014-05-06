@@ -63,7 +63,7 @@ Or install it yourself as:
 You have to define your own Source, Tube and Sink. See more in `examples`.
 
 ### Composing objects
-TODO...
+See more in `examples/composing.rb`.
 
 ## Contributing
 
