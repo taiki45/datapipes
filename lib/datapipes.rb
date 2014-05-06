@@ -9,6 +9,11 @@ require 'datapipes/version'
 Thread.abort_on_exception = true
 
 class Datapipes
+  # Pass datapipes components instances.
+  # Each component can be composed. See detail in examples.
+  #
+  # tube and pipe are optional.
+  # If not given tube, a default tube which takes no effect is used.
   def initialize(source, sink, tube: Tube.new, pipe: Pipe.new)
     @source = source
     @tube = tube
@@ -16,6 +21,11 @@ class Datapipes
     @pipe = pipe
   end
 
+  # Run sources, data flow via pipe, tubes and sinks work.
+  # Everything work with just call this method.
+  #
+  # When all sources finished producing, and all sinks did their jobs,
+  # this method returns.
   def run_resource
     @source.pipe = @pipe
     runners = @source.run_all
