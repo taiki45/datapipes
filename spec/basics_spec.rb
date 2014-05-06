@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-$: << File.expand_path('../../examples/lib', __FILE__)
+$:.unshift File.expand_path('../../examples/lib', __FILE__)
 require 'list'
 require 'triple'
 require 'print'
