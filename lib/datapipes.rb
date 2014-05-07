@@ -14,11 +14,9 @@ class Datapipes
   #
   # tube and pipe are optional.
   # If not given tube, a default tube which takes no effect is used.
-  def initialize(source, sink, tube: Tube.new, pipe: Pipe.new)
-    @source = source
-    @tube = tube
-    @sink = sink
-    @pipe = pipe
+  def initialize(source: Source.new, sink: Sink.new, tube: Tube.new, pipe: Pipe.new)
+    @source, @sink, @tube, @pipe = source, sink, tube, pipe
+    validate!
   end
 
   # Run sources, data flow via pipe, tubes and sinks work.
@@ -38,6 +36,20 @@ class Datapipes
   end
 
   private
+
+  def validate!
+    invalids = {
+      Source => @source,
+      Sink => @sink,
+      Tube => @tube,
+      Pipe => @pipe
+    }.select {|klass, arg| not arg.is_a? klass }
+
+    message = invalids.map {|klass, _| klass.name.downcase }.join(', ')
+    unless invalids.empty?
+      raise ArgumentError.new("invalid arguments: #{message}")
+    end
+  end
 
   def run_sink
     Thread.new do

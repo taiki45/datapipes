@@ -16,8 +16,8 @@ tube = Mul.new >> Triple.new
 sink = acc + rev_acc
 
 datapipe = Datapipes.new(
-  source,
-  sink,
+  source: source,
+  sink: sink,
   tube: tube
 )
 

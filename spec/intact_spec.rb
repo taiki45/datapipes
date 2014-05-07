@@ -2,10 +2,7 @@ require 'spec_helper'
 
 describe 'intact objects' do
   let(:datapipe) do
-    Datapipes.new(
-      Datapipes::Source.new,
-      Datapipes::Sink.new
-    )
+    Datapipes.new
   end
 
   it 'runs but occurs nothing' do

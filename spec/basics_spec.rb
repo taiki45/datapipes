@@ -11,8 +11,8 @@ describe 'basic function' do
 
   let(:datapipe) do
     Datapipes.new(
-      List.new,
-      Print.new,
+      source: List.new,
+      sink: Print.new,
       tube: Triple.new
     )
   end

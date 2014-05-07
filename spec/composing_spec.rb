@@ -18,8 +18,8 @@ describe 'composability' do
 
   let(:datapipe) do
     Datapipes.new(
-      source,
-      sink,
+      source: source,
+      sink: sink,
       tube: tube
     )
   end
