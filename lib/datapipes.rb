@@ -42,7 +42,7 @@ class Datapipes
   def run_comsumer
     Thread.new do
       loop do
-        data = @pipe.pull
+        data = @pipe.pour_out
         break if resource_ended?(data)
 
         @sink.run_all(@tube.run(data))
