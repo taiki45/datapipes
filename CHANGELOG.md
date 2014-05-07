@@ -1,3 +1,6 @@
+## 0.1.5
+- Change Pipe API name: recieve -> pour_in, pull -> pour_out
+
 ## 0.1.4
 - Add documents.
 
