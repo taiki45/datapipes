@@ -30,16 +30,16 @@ class Datapipes
     @source.pipe = @pipe
     runners = @source.run_all
 
-    consumer = run_comsumer
+    sink = run_sink
     runners.each(&:join)
 
     notify_resource_ending
-    consumer.join
+    sink.join
   end
 
   private
 
-  def run_comsumer
+  def run_sink
     Thread.new do
       loop do
         data = @pipe.pour_out
