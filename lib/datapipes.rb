@@ -12,11 +12,23 @@ class Datapipes
   # Pass datapipes components instances.
   # Each component can be composed. See detail in examples.
   #
-  # tube and pipe are optional.
-  # If not given tube, a default tube which takes no effect is used.
-  def initialize(source: Source.new, sink: Sink.new, tube: Tube.new, pipe: Pipe.new)
-    @source, @sink, @tube, @pipe = source, sink, tube, pipe
-    validate!
+  # Pass parameters as a hash:
+  #
+  #   datapipe = Datapipes.new(source: my_source, sink: my_sink)
+  #
+  # Or pass all:
+  #
+  #   datapipe = Datapipes.new(
+  #     source: my_source,
+  #     sink: my_sink,
+  #     tube: my_tube,
+  #     pipe: my_pipe
+  #   )
+  #
+  # All arguments are  optional. But in most case, you specify
+  # source and sink.
+  def initialize(args = {})
+    @source, @sink, @tube, @pipe = *ArgParser.extract(args)
   end
 
   # Run sources, data flow via pipe, tubes and sinks work.
@@ -36,20 +48,6 @@ class Datapipes
   end
 
   private
-
-  def validate!
-    invalids = {
-      Source => @source,
-      Sink => @sink,
-      Tube => @tube,
-      Pipe => @pipe
-    }.select {|klass, arg| not arg.is_a? klass }
-
-    message = invalids.map {|klass, _| klass.name.downcase }.join(', ')
-    unless invalids.empty?
-      raise ArgumentError.new("invalid arguments: #{message}")
-    end
-  end
 
   def run_sink
     Thread.new do
@@ -71,4 +69,14 @@ class Datapipes
   end
 
   Notification = Class.new
+
+  module ArgParser
+    def self.extract(args)
+      source = args[:source] || Source.new
+      sink = args[:sink] || Sink.new
+      tube = args[:tube] || Tube.new
+      pipe = args[:pipe] || Pipe.new
+      [source, sink, tube, pipe]
+    end
+  end
 end
