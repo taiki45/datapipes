@@ -1,5 +1,6 @@
 ## 0.1.5
 - Change Pipe API name: recieve -> pour_in, pull -> pour_out
+- Change Datapipes.new API: all arguments must be given as a Hash.
 
 ## 0.1.4
 - Add documents.
