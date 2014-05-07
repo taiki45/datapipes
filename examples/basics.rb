@@ -10,8 +10,8 @@ require 'print'
 # Then you can make your own datapipe with your objects.
 #
 datapipe = Datapipes.new(
-  List.new,        # A source
-  Print.new,       # A sink
+  source: List.new,
+  sink: Print.new,
   tube: Triple.new,
 )
 
