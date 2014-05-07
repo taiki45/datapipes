@@ -51,7 +51,7 @@ class Datapipes
   end
 
   def notify_resource_ending
-    @pipe.recieve Notification.new
+    @pipe.pour_in Notification.new
   end
 
   def resource_ended?(data)

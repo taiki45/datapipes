@@ -7,7 +7,7 @@ class Datapipes
   # If you make your own, you can override _initialize_, because
   # this is not used in internal.
   #
-  # Then supply _recieve_ and _pull_. _pull_ must cause thread blocking
+  # Then supply _pour_in_ and _pull_. _pull_ must cause thread blocking
   # when it is empty.
   class Pipe
     # You can override and don't need to call super in sub class.
@@ -16,7 +16,7 @@ class Datapipes
     end
 
     # Emit data to pipe.
-    def recieve(data)
+    def pour_in(data)
       @queue.enq data
     end
 

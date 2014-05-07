@@ -37,7 +37,7 @@ class Datapipes
     private
 
     def produce(data)
-      @pipe.recieve(data)
+      @pipe.pour_in(data)
     end
 
     def set_pipe
